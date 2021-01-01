@@ -72,8 +72,6 @@ public class Actions {
         Material itemInHand = player.getInventory().getItemInMainHand().getType();
         if (itemInHand != material) return;
         World world = player.getWorld();
-
         Fireball fireball = (Fireball) world.spawnEntity(player.getLocation(), EntityType.FIREBALL);
-        fireball.setVelocity(new Vector(0, 0, 10));
     }
 }
