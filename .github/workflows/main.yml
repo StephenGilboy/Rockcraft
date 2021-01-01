@@ -1,0 +1,38 @@
+name: Build Rockcraft Plugin
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build-on-ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1 - Checkout main branch
+        uses: action/checkout@v2
+
+      - name: Step 2 - Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Step 3 - Build Project
+        run: |
+          mvn -B package --file pom.xml
+          mkdir plugin && cp target/*.jar plugin
+
+      - name: Step 4 - Setup Maven Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os}}-m2
+
+      - name: Step 5 - Persist workflow data s artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-actions-artifact
+          path: plugin
