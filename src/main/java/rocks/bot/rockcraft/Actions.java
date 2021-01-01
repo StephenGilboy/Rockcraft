@@ -36,7 +36,6 @@ public class Actions {
                     .trail(true)
                     .build();
             Location location = player.getLocation();
-            location.add(new Vector(5, 0, 0));
             Firework firework = (Firework)world.spawnEntity(location, EntityType.FIREWORK);
             FireworkMeta fireworkMeta = firework.getFireworkMeta();
             fireworkMeta.addEffect(fireworkEffect);
@@ -45,13 +44,19 @@ public class Actions {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 @Override
                 public void run() {
-                    Location fwLoc = firework.getLocation();
-                    fwLoc.setY(location.getY());
-                    if (fwLoc.getX() > location.getX() + 50) {
+                    Location fwLocation = firework.getLocation();
+                    // How far has it flow up?
+                    double difference = fwLocation.getY() - location.getY();
+                    // Keep it on the same level as it started
+                    fwLocation.setY(location.getY());
+
+                    // Move it in the x direction for now
+                    fwLocation.setX(fwLocation.getX() + difference);
+                    if (firework.getLocation().getX() > location.getX() + 50) {
                         firework.detonate();
                     }
                 }
-            }, 2);
+            }, 1);
         } catch (Exception ex) {
             player.sendMessage("There was an error shooting the firework.");
             player.sendMessage(ex.getMessage());
