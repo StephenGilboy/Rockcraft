@@ -2,6 +2,7 @@ package rocks.bot.rockcraft;
 
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -65,5 +66,14 @@ public class Actions {
             player.sendMessage("There was an error shooting the firework.");
             player.sendMessage(ex.getMessage());
         }
+    }
+
+    public static void ShootFireball(Player player, Material material, JavaPlugin plugin) {
+        Material itemInHand = player.getInventory().getItemInMainHand().getType();
+        if (itemInHand != material) return;
+        World world = player.getWorld();
+
+        Fireball fireball = (Fireball) world.spawnEntity(player.getLocation(), EntityType.FIREBALL);
+        fireball.setVelocity(new Vector(0, 0, 10));
     }
 }

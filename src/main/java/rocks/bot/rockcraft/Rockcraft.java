@@ -38,7 +38,8 @@ public final class Rockcraft extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerInteractBlock(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        Actions.LightningStrike(player, Material.FISHING_ROD);
+        // Actions.LightningStrike(player, Material.FISHING_ROD);
+        Actions.ShootFireball(player, Material.FISHING_ROD, this);
         Actions.ShootFirework(player, this);
     }
 }
