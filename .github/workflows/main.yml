@@ -22,7 +22,6 @@ jobs:
       - name: Step 3 - Build Project
         run: |
           mvn -B package --file pom.xml
-          mkdir plugin && cp target/*.jar plugin
 
       - name: Step 4 - Setup Maven Cache
         uses: actions/cache@v2
@@ -31,8 +30,12 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os}}-m2
 
-      - name: Step 5 - Persist workflow data s artifacts
-        uses: actions/upload-artifact@v2
+      - name: Step 5 - Publish Plugin
+        uses: nogsantos/scp-deploy@master
         with:
-          name: github-actions-artifact
-          path: plugin
+          src: target/Rockcraft-*.jar
+          host: ${{ secrets.SSH_HOST }}
+          remote: ${{ secrets.SSH_DIR }}
+          port: ${{ secrets.SSH_PORT }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
