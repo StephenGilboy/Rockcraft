@@ -8,6 +8,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
 
@@ -41,7 +42,7 @@ public class Actions {
             fireworkMeta.addEffect(fireworkEffect);
             fireworkMeta.setPower(4);
             firework.setFireworkMeta(fireworkMeta);
-            Runnable task = new Runnable() {
+            int fireworkTask = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
                 @Override
                 public void run() {
                     Location fwLocation = firework.getLocation();
@@ -50,15 +51,16 @@ public class Actions {
                     double difference = fwLocation.getY() - location.getY();
                     // Keep it on the same level as it started
                     fwLocation.setY(location.getY());
-
                     // Move it in the x direction for now
                     fwLocation.setX(fwLocation.getX() + difference);
                     if (firework.getLocation().getX() > location.getX() + 50) {
                         firework.detonate();
                     }
                 }
-            };
-            plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, task, 1, 50);
+            }, 1, 1);
+            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                plugin.getServer().getScheduler().cancelTask(fireworkTask);
+            }, 50);
         } catch (Exception ex) {
             player.sendMessage("There was an error shooting the firework.");
             player.sendMessage(ex.getMessage());
