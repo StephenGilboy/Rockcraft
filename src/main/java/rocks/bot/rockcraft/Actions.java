@@ -42,6 +42,16 @@ public class Actions {
             fireworkMeta.addEffect(fireworkEffect);
             fireworkMeta.setPower(4);
             firework.setFireworkMeta(fireworkMeta);
+            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    Location fwLoc = firework.getLocation();
+                    fwLoc.setY(location.getY());
+                    if (fwLoc.getX() > location.getX() + 50) {
+                        firework.detonate();
+                    }
+                }
+            }, 2);
         } catch (Exception ex) {
             player.sendMessage("There was an error shooting the firework.");
             player.sendMessage(ex.getMessage());
