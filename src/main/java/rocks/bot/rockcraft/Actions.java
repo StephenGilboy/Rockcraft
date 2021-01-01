@@ -23,23 +23,29 @@ public class Actions {
 
     public static void ShootFirework(Player player, PlayerInteractEvent event) {
         Material currentItemType = player.getInventory().getItemInMainHand().getType();
+        player.sendMessage("You have a " + currentItemType + " in your main hand.");
         if (currentItemType != Material.FIREWORK_ROCKET) return;
 
-        Firework firework = (Firework) player.getInventory().getItemInMainHand();
+        try {
+            Firework firework = (Firework) player.getInventory().getItemInMainHand();
 /*
-        ArrayList<Color> fireworkColors = new ArrayList();
-        fireworkColors.add(Color.BLUE);
-        fireworkColors.add(Color.PURPLE);
-        World world = player.getWorld();
-        FireworkEffect fireworkEffect = FireworkEffect.builder()
-                .withTrail()
-                .withColor(fireworkColors)
-                .flicker(true)
-                .build();
+            ArrayList<Color> fireworkColors = new ArrayList();
+            fireworkColors.add(Color.BLUE);
+            fireworkColors.add(Color.PURPLE);
+            World world = player.getWorld();
+            FireworkEffect fireworkEffect = FireworkEffect.builder()
+                    .withTrail()
+                    .withColor(fireworkColors)
+                    .flicker(true)
+                    .build();
 */
-        Vector playerVector = player.getVelocity();
-        firework.setVelocity(new Vector(playerVector.getX() + 10, playerVector.getY() + 10 , playerVector.getZ()));
-        firework.isShotAtAngle();
-        event.setUseItemInHand(Event.Result.ALLOW);
+            Vector playerVector = player.getVelocity();
+            firework.setVelocity(new Vector(playerVector.getX() + 10, playerVector.getY() + 10 , playerVector.getZ()));
+            firework.isShotAtAngle();
+            event.setUseItemInHand(Event.Result.ALLOW);
+        } catch (Exception ex) {
+            player.sendMessage("There was an error shooting the firework.");
+            player.sendMessage(ex.getMessage());
+        }
     }
 }
