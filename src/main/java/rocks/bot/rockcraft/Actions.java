@@ -1,10 +1,7 @@
 package rocks.bot.rockcraft;
 
 import org.bukkit.*;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Firework;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -72,7 +69,7 @@ public class Actions {
         Material itemInHand = player.getInventory().getItemInMainHand().getType();
         if (itemInHand != material) return;
         World world = player.getWorld();
-        Fireball fireball = (Fireball) world.spawnEntity(player.getLocation(), EntityType.FIREBALL);
+        DragonFireball fireball = (DragonFireball) world.spawnEntity(player.getLocation(), EntityType.DRAGON_FIREBALL);
         Location playerLocation = player.getLocation();
         fireball.setVelocity(playerLocation.getDirection());
     }
