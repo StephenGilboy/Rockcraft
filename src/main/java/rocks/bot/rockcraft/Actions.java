@@ -36,7 +36,7 @@ public class Actions {
                     .trail(true)
                     .build();
             Location location = player.getLocation();
-            location.add(new Vector(10, 10, 10));
+            location.add(new Vector(5, 0, 0));
             Firework firework = (Firework)world.spawnEntity(location, EntityType.FIREWORK);
             FireworkMeta fireworkMeta = firework.getFireworkMeta();
             fireworkMeta.addEffect(fireworkEffect);
