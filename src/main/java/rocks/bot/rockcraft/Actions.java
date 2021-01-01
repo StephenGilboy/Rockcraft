@@ -40,7 +40,7 @@ public class Actions {
             Firework firework = (Firework)world.spawnEntity(location, EntityType.FIREWORK);
             FireworkMeta fireworkMeta = firework.getFireworkMeta();
             fireworkMeta.addEffect(fireworkEffect);
-            fireworkMeta.setPower(12);
+            fireworkMeta.setPower(4);
             firework.setFireworkMeta(fireworkMeta);
         } catch (Exception ex) {
             player.sendMessage("There was an error shooting the firework.");
