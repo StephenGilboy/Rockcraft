@@ -46,6 +46,7 @@ public class Actions {
                 public void run() {
                     Location fwLocation = firework.getLocation();
                     // How far has it flow up?
+                    player.sendMessage("FW at x: " + fwLocation.getX() + ", y: " + fwLocation.getY());
                     double difference = fwLocation.getY() - location.getY();
                     // Keep it on the same level as it started
                     fwLocation.setY(location.getY());
