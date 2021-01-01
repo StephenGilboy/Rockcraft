@@ -45,8 +45,6 @@ public class Actions {
                 @Override
                 public void run() {
                     Location fwLocation = firework.getLocation();
-                    // How far has it flow up?
-                    player.sendMessage("FW at x: " + fwLocation.getX() + ", y: " + fwLocation.getY());
                     // Keep it on the same level as it started
                     fwLocation.setY(startingY);
                     // Move it in the x direction for now
