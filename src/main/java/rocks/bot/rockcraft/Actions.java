@@ -1,9 +1,6 @@
 package rocks.bot.rockcraft;
 
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -38,18 +35,13 @@ public class Actions {
                     .flicker(true)
                     .trail(true)
                     .build();
-
+            Location location = player.getLocation();
+            location.add(new Vector(10, 10, 10));
             Firework firework = (Firework)world.spawnEntity(player.getLocation(), EntityType.FIREWORK);
             FireworkMeta fireworkMeta = firework.getFireworkMeta();
             fireworkMeta.addEffect(fireworkEffect);
-            fireworkMeta.setPower(1);
+            fireworkMeta.setPower(128);
             firework.setFireworkMeta(fireworkMeta);
-            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    firework.detonate();
-                }
-            }, 2);
         } catch (Exception ex) {
             player.sendMessage("There was an error shooting the firework.");
             player.sendMessage(ex.getMessage());
