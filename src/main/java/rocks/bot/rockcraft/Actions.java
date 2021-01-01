@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.util.Vector;
 
@@ -19,7 +21,7 @@ public class Actions {
         }
     }
 
-    public static void ShootFirework(Player player) {
+    public static void ShootFirework(Player player, PlayerInteractEvent event) {
         Material currentItemType = player.getInventory().getItemInMainHand().getType();
         if (currentItemType != Material.FIREWORK_ROCKET) return;
 
@@ -38,5 +40,6 @@ public class Actions {
         Vector playerVector = player.getVelocity();
         firework.setVelocity(new Vector(playerVector.getX() + 10, playerVector.getY() + 10 , playerVector.getZ()));
         firework.isShotAtAngle();
+        event.setUseItemInHand(Event.Result.ALLOW);
     }
 }
