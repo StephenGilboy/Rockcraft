@@ -31,9 +31,14 @@ public final class Rockcraft extends JavaPlugin implements Listener {
         event.getPlayer().sendMessage("Hello " + event.getPlayer().getName() + "! We have the Rockcraft plugin enabled.");
     }
 
+    /**
+     * Bind Actions to the onPlayerInteract event
+     * @param event
+     */
     @EventHandler
     public void onPlayerInteractBlock(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Actions.LightningStrike(player, Material.FISHING_ROD);
+        Actions.ShootFirework(player);
     }
 }
