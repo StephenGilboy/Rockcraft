@@ -48,11 +48,10 @@ public class Actions {
                     Location fwLocation = firework.getLocation();
                     // How far has it flow up?
                     player.sendMessage("FW at x: " + fwLocation.getX() + ", y: " + fwLocation.getY());
-                    double difference = fwLocation.getY() - location.getY();
                     // Keep it on the same level as it started
                     fwLocation.setY(location.getY());
                     // Move it in the x direction for now
-                    fwLocation.setX(fwLocation.getX() + difference);
+                    fwLocation.setX(fwLocation.getX() + 1);
                     if (firework.getLocation().getX() > location.getX() + 50) {
                         firework.detonate();
                     }
