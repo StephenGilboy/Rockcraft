@@ -37,6 +37,7 @@ public class Actions {
                     .trail(true)
                     .build();
             Location location = player.getLocation();
+            double startingY = location.getY();
             Firework firework = (Firework)world.spawnEntity(location, EntityType.FIREWORK);
             FireworkMeta fireworkMeta = firework.getFireworkMeta();
             fireworkMeta.addEffect(fireworkEffect);
@@ -49,10 +50,10 @@ public class Actions {
                     // How far has it flow up?
                     player.sendMessage("FW at x: " + fwLocation.getX() + ", y: " + fwLocation.getY());
                     // Keep it on the same level as it started
-                    fwLocation.setY(location.getY());
+                    fwLocation.setY(startingY);
                     // Move it in the x direction for now
-                    fwLocation.setX(fwLocation.getX() + 1);
-                    if (firework.getLocation().getX() > location.getX() + 50) {
+                    fwLocation.setX(fwLocation.getX() + 10);
+                    if (firework.getLocation().getX() > location.getX() + 100) {
                         firework.detonate();
                     }
                 }
