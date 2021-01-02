@@ -1,10 +1,15 @@
 package rocks.bot.rockcraft;
 
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -40,6 +45,21 @@ public final class Rockcraft extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         // Actions.LightningStrike(player, Material.FISHING_ROD);
         Actions.ShootFireball(player, Material.NETHERITE_SWORD, this);
-        Actions.ShootFirework(player, this);
+        // Actions.ShootFirework(player, this);
+    }
+
+    @EventHandler
+    public void onEntityShootBowEvent(EntityShootBowEvent event) {
+        if (event.getProjectile().getType() != EntityType.FIREWORK) return;
+        Firework fw = (Firework) event.getProjectile();
+        FireworkEffect fireworkEffect = FireworkEffect.builder()
+                .withTrail()
+                .withColor(Color.BLUE)
+                .withFade(Color.LIME)
+                .with(FireworkEffect.Type.BURST)
+                .flicker(true)
+                .trail(true)
+                .build();
+        fw.getFireworkMeta().addEffect(fireworkEffect);
     }
 }
