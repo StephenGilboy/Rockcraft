@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Rockcraft extends JavaPlugin implements Listener {
@@ -61,6 +62,8 @@ public final class Rockcraft extends JavaPlugin implements Listener {
                 .flicker(true)
                 .trail(true)
                 .build();
-        fw.getFireworkMeta().addEffect(fireworkEffect);
+        FireworkMeta fwMeta = fw.getFireworkMeta();
+        fwMeta.addEffect(fireworkEffect);
+        fw.setFireworkMeta(fwMeta);
     }
 }
