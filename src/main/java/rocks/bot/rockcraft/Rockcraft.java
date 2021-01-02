@@ -63,7 +63,7 @@ public final class Rockcraft extends JavaPlugin implements Listener {
                 .build();
         FireworkMeta fwMeta = fw.getFireworkMeta();
         fwMeta.addEffect(fireworkEffect);
-        fwMeta.setPower(120);
+        fwMeta.setPower(6);
         fw.setFireworkMeta(fwMeta);
     }
 }
