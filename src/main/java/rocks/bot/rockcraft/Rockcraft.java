@@ -50,6 +50,7 @@ public final class Rockcraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
+        event.getEntity().sendMessage("You shot a " + event.getProjectile().getType());
         if (event.getProjectile().getType() != EntityType.FIREWORK) return;
         Firework fw = (Firework) event.getProjectile();
         FireworkEffect fireworkEffect = FireworkEffect.builder()
