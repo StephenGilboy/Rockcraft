@@ -34,7 +34,7 @@ public final class Rockcraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("Hello " + event.getPlayer().getName() + "! We have the Rockcraft plugin enabled.");
+        event.getPlayer().sendMessage("Hello " + event.getPlayer().getName() + "! I changes this to a new message.");
     }
 
     /**
