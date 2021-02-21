@@ -20,10 +20,10 @@ public final class Rockcraft extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        PluginCommand shootCommand = this.getCommand("shoot");
-        if (shootCommand != null) {
-            shootCommand.setExecutor(new ShootCommandExecutor(this));
-        }
+        // PluginCommand shootCommand = this.getCommand("shoot");
+        // if (shootCommand != null) {
+        //     shootCommand.setExecutor(new ShootCommandExecutor(this));
+        // }
         this.getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -41,29 +41,29 @@ public final class Rockcraft extends JavaPlugin implements Listener {
      * Bind Actions to the onPlayerInteract event
      * @param event
      */
-    @EventHandler
-    public void onPlayerInteractBlock(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-        // Actions.LightningStrike(player, Material.FISHING_ROD);
-        Actions.ShootFireball(player, Material.NETHERITE_SWORD, this);
-        // Actions.ShootFirework(player, this);
-    }
+    // @EventHandler
+    // public void onPlayerInteractBlock(PlayerInteractEvent event) {
+    //     Player player = event.getPlayer();
+    //     // Actions.LightningStrike(player, Material.FISHING_ROD);
+    //     Actions.ShootFireball(player, Material.NETHERITE_SWORD, this);
+    //     // Actions.ShootFirework(player, this);
+    // }
 
-    @EventHandler
-    public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if (event.getProjectile().getType() != EntityType.FIREWORK) return;
-        Firework fw = (Firework) event.getProjectile();
-        FireworkEffect fireworkEffect = FireworkEffect.builder()
-                .withTrail()
-                .withColor(Color.BLUE)
-                .withFade(Color.LIME)
-                .with(FireworkEffect.Type.BURST)
-                .flicker(true)
-                .trail(true)
-                .build();
-        FireworkMeta fwMeta = fw.getFireworkMeta();
-        fwMeta.addEffect(fireworkEffect);
-        fwMeta.setPower(6);
-        fw.setFireworkMeta(fwMeta);
-    }
+    // @EventHandler
+    // public void onEntityShootBowEvent(EntityShootBowEvent event) {
+    //     if (event.getProjectile().getType() != EntityType.FIREWORK) return;
+    //     Firework fw = (Firework) event.getProjectile();
+    //     FireworkEffect fireworkEffect = FireworkEffect.builder()
+    //             .withTrail()
+    //             .withColor(Color.BLUE)
+    //             .withFade(Color.LIME)
+    //             .with(FireworkEffect.Type.BURST)
+    //             .flicker(true)
+    //             .trail(true)
+    //             .build();
+    //     FireworkMeta fwMeta = fw.getFireworkMeta();
+    //     fwMeta.addEffect(fireworkEffect);
+    //     fwMeta.setPower(6);
+    //     fw.setFireworkMeta(fwMeta);
+    // }
 }
