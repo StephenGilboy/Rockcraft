@@ -34,7 +34,7 @@ public final class Rockcraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("Hello " + event.getPlayer().getName() + "! I changes this to a new message.");
+        event.getPlayer().sendMessage("Hello " + event.getPlayer().getName() + "! LOl Ur bad.");
     }
 
     /**
@@ -66,4 +66,5 @@ public final class Rockcraft extends JavaPlugin implements Listener {
     //     fwMeta.setPower(6);
     //     fw.setFireworkMeta(fwMeta);
     // }
+
 }
