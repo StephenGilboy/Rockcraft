@@ -1,5 +1,7 @@
 # Rockcraft Plugin
 
+A repository to learn how to create Minecraft plugins and teach my newphew how to build them as well. 
+
 ## Get the Latest Code
 
 To get the latest code run the following command.
