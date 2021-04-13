@@ -1,6 +1,6 @@
 # Rockcraft Plugin
 
-A repository to learn how to create Minecraft plugins and teach my newphew how to build them as well. 
+A repository to learn how to create Minecraft plugins and teach my nephew how to build them as well. 
 
 ## Get the Latest Code
 
